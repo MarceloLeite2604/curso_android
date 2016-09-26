@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Aula6</string>
+    <string name="label_button_anexar_imagem">Anexar imagem</string>
+    <string name="label_edittext_destinatario">Destinatário</string>
+    <string name="label_button_enviar">Enviar</string>
+    <string name="description_imagem_anexada">Imagem anexada</string>
+    <string name="label_edittext_mensagem">Mensagem</string>
+</resources>

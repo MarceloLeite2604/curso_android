@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sala01.aula6.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edittext_destinatario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_edittext_destinatario"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edittext_mensagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_edittext_mensagem"
+                android:inputType="text"
+                android:text="Imagem" />
+
+            <Button
+                android:id="@+id/button_anexar_imagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_button_anexar_imagem"
+                android:textSize="30sp" />
+
+
+            <ImageView
+                android:id="@+id/imageview_imagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_imagem_anexada" />
+
+
+            <Button
+                android:id="@+id/button_enviar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_button_enviar"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

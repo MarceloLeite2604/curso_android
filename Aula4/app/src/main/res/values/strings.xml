@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Aula4</string>
+    <string name="label_button_fragment">Fragment</string>
+    <string name="label_button_activity">Activity</string>
+    <string name="label_button_definicao">Definição</string>
+    <string name="label_button_voltar">Voltar</string>
+    <string name="titulo_main">Ciclos</string>
+    <string name="titulo_ciclo_de_vida">Ciclo de Vida</string>
+    <string name="titulo_definicao">Definição</string>
+    <string name="definicao_activity">Activity é um componente de aplicativo que fornece uma tela com a qual os usuários podem interagir para fazer algo, como discar um número no telefone, tirar uma foto, enviar um e-mail ou ver um mapa. Cada atividade recebe uma janela que exibe a interface do usuário. Geralmente, a janela preenche a tela, mas pode ser menor que a tela e flutuar sobre outras janelas.</string>
+    <string name="definicao_fragment">Um Fragment representa o comportamento ou uma parte da interface do usuário em um Activity. É possível combinar vários fragmentos em uma única atividade para compilar uma IU de painéis múltiplos e reutilizar um fragmento em diversas atividades. Um fragmento é como uma seção modular de uma atividade, que tem o próprio ciclo de vida, recebe os próprios eventos de entrada e que pode ser adicionado ou removido com a atividade em execução (uma espécie de "sub-atividade" que pode ser reutilizada em diferentes atividades).</string>    <string name="activity">Activity</string>
+    <string name="fragment">Fragment</string>
+    <string name="description_imageview_ciclo_de_vida">Ciclo de vida do elemento</string>
+</resources>

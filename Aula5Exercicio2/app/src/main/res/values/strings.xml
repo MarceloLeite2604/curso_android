@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Aula5Exercicio2</string>
+    <string name="hint_edittext_numero">Digite um número inteiro</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_button_salvar">Salvar</string>
+    <string name="label_button_listar">Listar</string>
+    <string name="label_button_voltar">Voltar</string>
+</resources>
