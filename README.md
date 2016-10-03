@@ -21,8 +21,17 @@ Elementos estudados:
 * Backstack
 
 ## Aula 5, exercício 2
-Este projeto elabora um aplicativo que armazena  números inteiros e os lista, indicando se cada número é par ou impar e se ele é primo.
+Este projeto elabora um aplicativo que armazena números inteiros e os lista, indicando se cada número é par ou impar e se ele é primo.
 
 Elementos estudados:
 * Adapters
 * ListViews
+
+## Aula 5, exercício 3
+Este projeto elabora um aplicativo que recebe o endereço de uma imagem na internet e apresenta esta imagem ao usuário.
+
+Elementos estudados:
+* AsyncTask
+* ProgressBar
+* Bitmaps
+* HttpURLConnection
