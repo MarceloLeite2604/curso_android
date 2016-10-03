@@ -1,8 +1,8 @@
-## Curso Android
+# Curso Android
 
 Este repositório contém todos os exercícios criados durante o curso de Android ministrado na [TargetTrust](http://www.targettrust.com.br) pelo instrutor [Vinicius Hisao](https://github.com/viniciushisao).
 
-# Aula 4
+## Aula 4
 Este projeto elabora um aplicativo que apresenta definições dos elementos "Activity" e "Fragment" assim como um fluxograma do ciclo de vida destes componentes.
 
 Elementos estudados:
@@ -13,7 +13,7 @@ Elementos estudados:
 * ScrollViews
 * Listeners
 
-# Aula 4, exercício 2
+## Aula 4, exercício 2
 Este projeto elabora um aplicativo que apresenta três fragments, cada uma com um botão para exibir a próxima fragment.
 
 Elementos estudados:
