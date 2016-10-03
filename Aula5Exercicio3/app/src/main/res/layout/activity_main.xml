@@ -10,20 +10,20 @@
         android:id="@+id/edittext_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/label_edittext_url"
+        android:hint="@string/edittext_url_hint"
         android:text="https://a2ua.com/hdr/hdr-016.jpg"
         android:inputType="text" />
 
     <Button
-        android:id="@+id/button_visualizar"
+        android:id="@+id/button_view_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_button_visualizar" />
+        android:text="@string/button_view_label" />
 
     <ImageView
             android:scaleType="fitStart"
-            android:id="@+id/imageview_imagem"
+            android:id="@+id/imageview_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/hint_imageview_imagem" />
+            android:contentDescription="@string/imageview_image_hint" />
 </LinearLayout>

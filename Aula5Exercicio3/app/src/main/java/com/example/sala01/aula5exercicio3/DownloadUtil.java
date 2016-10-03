@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.example.sala01.aula5exercicio3.util.LogUtil;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,11 +15,11 @@ import java.net.URL;
  */
 public class DownloadUtil {
 
-    public static Bitmap downloadBitmap(String url) {
+    public static Bitmap downloadBitmap(String address) {
         HttpURLConnection urlConnection = null;
         try {
-            URL uri = new URL(url);
-            urlConnection = (HttpURLConnection) uri.openConnection();
+            URL url = new URL(address);
+            urlConnection = (HttpURLConnection) url.openConnection();
             int statusCode = urlConnection.getResponseCode();
             if (statusCode != HttpURLConnection.HTTP_OK) {
                 return null;
@@ -30,7 +32,7 @@ public class DownloadUtil {
             }
         } catch (Exception e) {
             urlConnection.disconnect();
-            Log.w("ImageDownloader", "Error downloading image from " + url);
+            LogUtil.d(MainActivity.LOG_TAG, "{downloadBitmap, 35} exception raised " + e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

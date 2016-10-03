@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Aula5Exercicio3</string>
-    <string name="label_edittext_url">URL da imagem</string>
-    <string name="label_button_visualizar">Visualizar</string>
-    <string name="hint_imageview_imagem">Imagem da URL</string>
+    <string name="edittext_url_hint">Image URL</string>
+    <string name="button_view_label">View image</string>
+    <string name="imageview_image_hint">Image obtained from URL</string>
+    <string name="progressbar_download_title">Obtaining image</string>
+    <string name="progressbar_download_message">Please wait...</string>
 </resources>
