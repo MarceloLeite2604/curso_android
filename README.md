@@ -4,6 +4,7 @@ Este repositório contém todos os exercícios criados durante o curso de Androi
 
 # Aula 4
 Este projeto elabora um aplicativo que apresenta definições dos elementos "Activity" e "Fragment" assim como um fluxograma do ciclo de vida destes componentes.
+
 Elementos estudados:
 * Activities
 * Intents
@@ -11,3 +12,10 @@ Elementos estudados:
 * Images
 * ScrollViews
 * Listeners
+
+# Aula 4, exercício 2
+Este projeto elabora um aplicativo que apresenta três fragments, cada uma com um botão para exibir a próxima fragment.
+
+Elementos estudados:
+* Fragments
+* Backstack
