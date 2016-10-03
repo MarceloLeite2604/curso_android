@@ -1,7 +1,6 @@
 package layout;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,47 +9,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.sala01.aula5exercicio2.MainActivity;
 import com.example.sala01.aula5exercicio2.R;
+import com.example.sala01.aula5exercicio2.util.LogUtil;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnListFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ListFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "integerArrayList";
 
-    public ArrayList<Integer> numerosList;
-
-    // TODO: Rename and change types of parameters
-    private NumberAdapter numberAdapter;
+    public ArrayList<Integer> integerArrayList;
 
     private OnListFragmentInteractionListener mListener;
 
     public ListFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param integerList Parameter 1.
-     * @return A new instance of fragment ListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(ArrayList<Integer> integerList) {
+    public static ListFragment newInstance(ArrayList<Integer> integerArrayList) {
         ListFragment fragment = new ListFragment();
-        fragment.numerosList = integerList;
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, integerList);
+        args.putSerializable(ARG_PARAM1, integerArrayList);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,33 +36,31 @@ public class ListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            integerArrayList = (ArrayList<Integer>) getArguments().getSerializable(ARG_PARAM1);
+            LogUtil.d(MainActivity.LOG_TAG, "{onCreate, 41} List size: " + integerArrayList.size());
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        LogUtil.d(MainActivity.LOG_TAG, "{onCreateView, 45} ");
         final View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        ListView listViewNumeros = (ListView) view.findViewById(R.id.listview_numeros);
+        final ListView listViewIntegers = (ListView) view.findViewById(R.id.listview_integers);
 
-        listViewNumeros.setAdapter(new NumberAdapter(numerosList, getActivity()));
+        listViewIntegers.setAdapter(new IntegerAdapter(integerArrayList, getActivity()));
 
-        final Button buttonVoltar = (Button) view.findViewById(R.id.button_voltar);
-        buttonVoltar.setOnClickListener(new View.OnClickListener() {
+        final Button buttonBack = (Button) view.findViewById(R.id.button_back);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mListener.onListFragmentInteraction();
             }
         });
 
-
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onListFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -104,18 +80,7 @@ public class ListFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(Uri uri);
+        void onListFragmentInteraction();
     }
 }

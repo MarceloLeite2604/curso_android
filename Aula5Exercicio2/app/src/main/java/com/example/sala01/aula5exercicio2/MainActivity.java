@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.sala01.aula5exercicio2.util.LogUtil;
+
 import java.util.ArrayList;
 
 import layout.InputFragment;
@@ -15,40 +17,36 @@ public class MainActivity extends AppCompatActivity implements InputFragment.OnF
 
     public static final String LOG_TAG = "LOG_TAG";
 
-    private ArrayList<Integer> listNumeros;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listNumeros = new ArrayList<>();
+        LogUtil.startDebug();
 
         FragmentTransaction fragmentTransaction = createFragmentTransaction();
-        fragmentTransaction.add(R.id.framelayout_main, InputFragment.newInstance(null, null), null);
+        fragmentTransaction.replace(R.id.framelayout_main, InputFragment.newInstance(), null);
         fragmentTransaction.commit();
 
     }
 
+    @Override
+    public void onListFragmentInteraction() {
+
+        LogUtil.d(MainActivity.LOG_TAG, "{onListFragmentInteraction, 32} ");
+        getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onInputFragmentInteraction(ArrayList<Integer> integerArrayList) {
+        LogUtil.d(MainActivity.LOG_TAG, "{onInputFragmentInteraction, 42} List size: " + integerArrayList.size());
+        FragmentTransaction fragmentTransaction = createFragmentTransaction();
+        fragmentTransaction.replace(R.id.framelayout_input, ListFragment.newInstance(integerArrayList));
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
     private FragmentTransaction createFragmentTransaction() {
         return getSupportFragmentManager().beginTransaction();
-    }
-
-    @Override
-    public void onListFragmentInteraction(Uri uri) {
-        finish();
-    }
-
-    @Override
-    public void onInputFragmentInteraction(Integer numero) {
-        Log.d(LOG_TAG, "onInputFragmentInteraction: " + numero);
-        if (numero != null) {
-            listNumeros.add(numero);
-        } else {
-            FragmentTransaction fragmentTransaction = createFragmentTransaction();
-            fragmentTransaction.replace(R.id.framelayout_input, ListFragment.newInstance(listNumeros));
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }
     }
 }

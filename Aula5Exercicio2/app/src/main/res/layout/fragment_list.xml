@@ -3,7 +3,7 @@
     android:id="@+id/framelayout_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/framelayout_list_background"
     tools:context="layout.ListFragment">
 
     <LinearLayout
@@ -12,16 +12,15 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/listview_numeros"
+            android:id="@+id/listview_integers"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button_voltar"
+            android:id="@+id/button_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_button_voltar" />
+            android:text="@string/button_back_label" />
     </LinearLayout>
-
 </FrameLayout>

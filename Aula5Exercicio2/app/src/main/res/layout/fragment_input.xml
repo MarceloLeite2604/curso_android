@@ -11,10 +11,11 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edittext_numero"
+            android:id="@+id/edittext_integer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_edittext_numero" />
+            android:inputType="number"
+            android:hint="@string/edittext_integer_hint" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,18 +23,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_salvar"
+                android:id="@+id/button_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/label_button_salvar" />
+                android:text="@string/button_save_label" />
 
             <Button
-                android:id="@+id/button_listar"
+                android:id="@+id/button_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/label_button_listar" />
+                android:text="@string/button_list_label" />
 
         </LinearLayout>
     </LinearLayout>

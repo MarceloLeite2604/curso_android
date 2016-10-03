@@ -1,7 +1,6 @@
 package layout;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,97 +12,59 @@ import android.widget.EditText;
 
 import com.example.sala01.aula5exercicio2.MainActivity;
 import com.example.sala01.aula5exercicio2.R;
+import com.example.sala01.aula5exercicio2.util.LogUtil;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link InputFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link InputFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class InputFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
+    private ArrayList<Integer> integersArrayList;
+
+
     public InputFragment() {
-        // Required empty public constructor
+        integersArrayList = new ArrayList<>();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InputFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InputFragment newInstance(String param1, String param2) {
+    public static InputFragment newInstance() {
         InputFragment fragment = new InputFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         final View viewFragment = inflater.inflate(R.layout.fragment_input, container, false);
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        final Button buttonSave = (Button) viewFragment.findViewById(R.id.button_save);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.button_salvar: {
-                        Log.d(MainActivity.LOG_TAG, "onClickListener: Salvar");
-                        final EditText editTextNumero = (EditText) viewFragment.findViewById(R.id.edittext_numero);
-                        Integer numero = new Integer(editTextNumero.getText().toString());
-                        Log.d(MainActivity.LOG_TAG, "Número: " + numero);
-                        mListener.onInputFragmentInteraction(numero);
-                        editTextNumero.setText("");
-                        break;
-                    }
-                    case R.id.button_listar: {
-                        mListener.onInputFragmentInteraction(null);
-                        break;
-                    }
-                }
+                LogUtil.d(MainActivity.LOG_TAG, "{onClick, 48} Save");
+                final EditText editTextNumero = (EditText) viewFragment.findViewById(R.id.edittext_integer);
+                Integer integer = new Integer(editTextNumero.getText().toString());
+                LogUtil.d(MainActivity.LOG_TAG, "{onClick, 52} Integer: " + integer);
+                integersArrayList.add(integer);
+                editTextNumero.setText("");
             }
-        };
+        });
 
-        final Button buttonSalvar = (Button)viewFragment.findViewById(R.id.button_salvar);
-        final Button buttonEditar = (Button)viewFragment.findViewById(R.id.button_listar);
-        buttonSalvar.setOnClickListener(onClickListener);
-        buttonEditar.setOnClickListener(onClickListener);
+        final Button buttonList = (Button) viewFragment.findViewById(R.id.button_list);
+        buttonList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogUtil.d(MainActivity.LOG_TAG, "{onClick, 62}");
+                mListener.onInputFragmentInteraction(integersArrayList);
+            }
+        });
 
         return viewFragment;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onInputFragmentInteraction(null);
-        }
     }
 
     @Override
@@ -123,18 +84,7 @@ public class InputFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onInputFragmentInteraction(Integer numero);
+        void onInputFragmentInteraction(ArrayList<Integer> integerArrayList);
     }
 }
