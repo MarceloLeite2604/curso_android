@@ -6,10 +6,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,9 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "Conteúdo: " + conteudo);
                 if (!conteudo.isEmpty()) {
                     Log.d(LOG_TAG, "Criando task de download.");
-                    AsyncTask<String, Integer, Bitmap> dowloadImageAsyncTask = new AsyncTask<String, Integer, Bitmap>() {
+                    final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setTitle("Obtendo imagem");
+                    progressDialog.setMessage("Aguarde");
+                    progressDialog.setCancelable(false);
 
-                        private ProgressDialog progressDialog;
+                    AsyncTask<String, Integer, Bitmap> dowloadImageAsyncTask = new AsyncTask<String, Integer, Bitmap>() {
 
                         @Override
                         protected void onPostExecute(Bitmap bitmap) {
@@ -47,23 +53,12 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         protected Bitmap doInBackground(String... strings) {
                             Log.d(LOG_TAG, "Downloading: " + strings[0]);
-                            // TODO: A criação do progressBar está abortando a execução do programa.
-                            progressDialog = ProgressDialog.show(getApplicationContext(), "Title",
-                                    "Baixando ...");
-                            //progressDialog.setCancelable(false);
-                            Log.d(LOG_TAG, "Trace 2");
                             return DownloadUtil.downloadBitmap(strings[0]);
-                        }
-
-                        @Override
-                        protected void onProgressUpdate(Integer... values) {
-                            super.onProgressUpdate(values);
-                            Log.d(LOG_TAG, "onProgressUpdate");
-                            progressDialog.setMessage("Baixando " + values[0]);
                         }
                     };
 
                     dowloadImageAsyncTask.execute(conteudo);
+                    progressDialog.show();
                 }
             }
         });

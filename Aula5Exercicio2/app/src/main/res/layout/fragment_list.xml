@@ -3,7 +3,7 @@
     android:id="@+id/framelayout_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c77"
+    android:background="#fff"
     tools:context="layout.ListFragment">
 
     <LinearLayout

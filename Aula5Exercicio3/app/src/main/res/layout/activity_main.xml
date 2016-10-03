@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/label_edittext_url"
+        android:text="https://a2ua.com/hdr/hdr-016.jpg"
         android:inputType="text" />
 
     <Button
@@ -19,14 +20,10 @@
         android:layout_height="wrap_content"
         android:text="@string/label_button_visualizar" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
+    <ImageView
+            android:scaleType="fitStart"
             android:id="@+id/imageview_imagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@string/hint_imageview_imagem" />
-    </ScrollView>
 </LinearLayout>
