@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Aula7</string>
-    <string name="hint_edittext_modelo">Modelo</string>
-    <string name="hint_edittext_placa">Placa</string>
-    <string name="label_button_salvar">Salvar</string>
-</resources>
