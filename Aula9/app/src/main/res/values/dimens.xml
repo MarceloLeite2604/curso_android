@@ -1,0 +1,8 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="imageview_avatar_size">60dp</dimen>
+    <dimen name="imageview_avatar_padding">5dp</dimen>
+    <dimen name="textview_repostory_name_text_size">20sp</dimen>
+    <dimen name="button_fetch_repositories_text_size">20sp</dimen>
+    <dimen name="edittext_usuario_text_size">25sp</dimen>
+</resources>

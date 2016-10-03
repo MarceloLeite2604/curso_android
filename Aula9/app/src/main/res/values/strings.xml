@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Aula9</string>
+    <string name="edittext_usuario_hint">GitHub Username</string>
+    <string name="button_fetch_repositories_label">Fetch repositories</string>
+</resources>

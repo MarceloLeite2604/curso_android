@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.InputFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.sala01.aula9.MainActivity">
+
+        <EditText
+            android:id="@+id/edittext_github_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edittext_usuario_hint"
+            android:textSize="@dimen/edittext_usuario_text_size" />
+
+        <Button
+            android:id="@+id/button_fetch_repositories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_fetch_repositories_label"
+            android:textSize="@dimen/button_fetch_repositories_text_size" />
+    </LinearLayout>
+
+</FrameLayout>
