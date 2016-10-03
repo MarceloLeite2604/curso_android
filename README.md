@@ -19,3 +19,10 @@ Este projeto elabora um aplicativo que apresenta três fragments, cada uma com u
 Elementos estudados:
 * Fragments
 * Backstack
+
+## Aula 5, exercício 2
+Este projeto elabora um aplicativo que armazena  números inteiros e os lista, indicando se cada número é par ou impar e se ele é primo.
+
+Elementos estudados:
+* Adapters
+* ListViews
