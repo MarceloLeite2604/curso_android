@@ -19,19 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "LOG_TAG";
 
-    private static final int ACTIVITY_SELECIONAR_FOTO = 2236;
+    private static final int ACTIVITY_SELECT_PHOTO = 2236;
 
-    private ImageView imageViewImagem;
+    private ImageView imageViewImage;
 
-    private Button buttonAnexarImagem;
+    private Button buttonAttachImage;
 
-    private Button buttonEnviar;
+    private Button buttonSend;
 
-    private EditText editTextDestinatario;
+    private EditText editTextReceiver;
 
-    private EditText editTextMensagem;
+    private EditText editTextMessage;
 
-    private Uri uriImagem;
+    private Uri imageUri;
 
 
     @Override
@@ -39,75 +39,75 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonAnexarImagem = (Button) findViewById(R.id.button_anexar_imagem);
-        imageViewImagem = (ImageView) findViewById(R.id.imageview_imagem);
-        editTextDestinatario = (EditText) findViewById(R.id.edittext_destinatario);
-        editTextMensagem = (EditText) findViewById(R.id.edittext_mensagem);
-        buttonEnviar = (Button) findViewById(R.id.button_enviar);
+        buttonAttachImage = (Button) findViewById(R.id.button_attach_image);
+        imageViewImage = (ImageView) findViewById(R.id.imageview_image);
+        editTextReceiver = (EditText) findViewById(R.id.edittext_receiver);
+        editTextMessage = (EditText) findViewById(R.id.edittext_message);
+        buttonSend = (Button) findViewById(R.id.button_send);
 
-        buttonAnexarImagem.setOnClickListener(new View.OnClickListener() {
+        buttonAttachImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSelecionarImagem = new Intent(Intent.ACTION_PICK);
-                intentSelecionarImagem.setType("image/*");
-                startActivityForResult(intentSelecionarImagem, ACTIVITY_SELECIONAR_FOTO);
+                Intent intentSelectImage = new Intent(Intent.ACTION_PICK);
+                intentSelectImage.setType("image/*");
+                startActivityForResult(intentSelectImage, ACTIVITY_SELECT_PHOTO);
             }
         });
 
-        buttonEnviar.setOnClickListener(new View.OnClickListener() {
+        buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String destinatario = editTextDestinatario.getText().toString();
-                if (destinatario.isEmpty()) {
-                    exibirMensagem("Informe o destinatário da mensagem.");
+                String receiver = editTextReceiver.getText().toString();
+                if (receiver.isEmpty()) {
+                    showMessage(getString(R.string.alert_inform_receiver));
                     return;
                 }
 
 
-                String mensagem = editTextMensagem.getText().toString();
-                if (mensagem.isEmpty()) {
-                    exibirMensagem("Informe o conteúdo da mensagem.");
+                String message = editTextMessage.getText().toString();
+                if (message.isEmpty()) {
+                    showMessage(getString(R.string.alert_inform_message));
                     return;
                 }
 
 
-                if (imageViewImagem.getDrawable() == null) {
-                    exibirMensagem("Anexe uma imagem na mensagem.");
+                if (imageViewImage.getDrawable() == null) {
+                    showMessage(getString(R.string.alert_attach_image));
                     return;
                 }
 
-                if (verificarEmail(destinatario)) {
-                    enviarViaEmail(destinatario, mensagem);
+                if (isAnEmailAddress(receiver)) {
+                    sendEmail(receiver, message);
                 } else {
-                    enviarViaMMS(destinatario, mensagem);
+                    sendMMS(receiver, message);
                 }
             }
         });
     }
 
-    private void exibirMensagem(String mensagem) {
-        Toast.makeText(MainActivity.this, mensagem, Toast.LENGTH_SHORT);
+    private void showMessage(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT);
     }
 
-    private void enviarViaMMS(String numeroDeDestino, String mensagem) {
-        Uri uri = Uri.parse("smsto:" + numeroDeDestino);
+    private void sendMMS(String receiver, String message) {
+        Uri uri = Uri.parse("smsto:" + receiver);
         Intent intentEnviarMMS = new Intent(Intent.ACTION_SENDTO, uri);
-        intentEnviarMMS.putExtra("sms_body", mensagem);
+        intentEnviarMMS.putExtra("sms_body", message);
         startActivity(intentEnviarMMS);
     }
 
-    private void enviarViaEmail(String destinatario, String mensagem) {
+    private void sendEmail(String receiver, String message) {
         Intent intentEnviarEmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto", destinatario, null));
-        intentEnviarEmail.putExtra(Intent.EXTRA_SUBJECT, mensagem);
-        intentEnviarEmail.putExtra(Intent.EXTRA_TEXT, mensagem);
-        intentEnviarEmail.putExtra(Intent.EXTRA_STREAM, uriImagem);
+                "mailto", receiver, null));
+        intentEnviarEmail.putExtra(Intent.EXTRA_SUBJECT, message);
+        intentEnviarEmail.putExtra(Intent.EXTRA_TEXT, message);
+        intentEnviarEmail.putExtra(Intent.EXTRA_STREAM, imageUri);
 
-        startActivity(Intent.createChooser(intentEnviarEmail, "Enviar email"));
+        startActivity(Intent.createChooser(intentEnviarEmail, "Send email"));
     }
 
-    private boolean verificarEmail(String destino) {
+    private boolean isAnEmailAddress(String destino) {
         return (destino.indexOf("@") >= 0);
     }
 
@@ -116,19 +116,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case ACTIVITY_SELECIONAR_FOTO: {
+            case ACTIVITY_SELECT_PHOTO: {
                 if (resultCode == RESULT_OK) {
-                    uriImagem = data.getData();
+                    imageUri = data.getData();
                     try {
-                        InputStream inputStreamImagem = getContentResolver().openInputStream(uriImagem);
-                        Bitmap bitmapImagem = BitmapFactory.decodeStream(inputStreamImagem);
+                        InputStream inputStreamImagem = getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmapImage = BitmapFactory.decodeStream(inputStreamImagem);
 
-                        imageViewImagem.setImageBitmap(bitmapImagem);
-                        buttonAnexarImagem.setText("Alterar imagem");
+                        imageViewImage.setImageBitmap(bitmapImage);
+                        buttonAttachImage.setText(getString(R.string.label2_button_attach_image));
 
-                    } catch (FileNotFoundException excecao) {
-                        Toast.makeText(this, excecao.getMessage(), Toast.LENGTH_LONG);
-                        excecao.printStackTrace();
+                    } catch (FileNotFoundException exception) {
+                        Toast.makeText(this, exception.getMessage(), Toast.LENGTH_LONG);
+                        exception.printStackTrace();
                     }
                 }
                 break;

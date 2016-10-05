@@ -35,3 +35,9 @@ Elementos estudados:
 * ProgressBar
 * Bitmaps
 * HttpURLConnection
+
+## Aula 6
+Este projeto elabora um aplicato que recebe um endereço, uma mensagem e possui um, um botão para anexar imagens contidas na galeria do celular e um botão para enviar mensagens. Uma vez que os campos estejam preenchidos, o aplicativo verificará se o destinatário é um endereço de e-mail ou um número de teleone e enviará a mensagem via e-mail ou MMS.
+
+Elementos estudados:
+* Intent retornando resultados
