@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Aula7</string>
-    <string name="hint_edittext_modelo">Modelo</string>
-    <string name="hint_edittext_placa">Placa</string>
-    <string name="label_button_salvar">Salvar</string>
+    <string name="edittext_model_hint">Model</string>
+    <string name="edittext_license_plate_hint">License plate</string>
+    <string name="button_save_label">Save</string>
+    <string name="edittext_model_alert_message">Please inform car model.</string>
+    <string name="edittext_license_plate_alert_message">Please inform the license plate.</string>
 </resources>

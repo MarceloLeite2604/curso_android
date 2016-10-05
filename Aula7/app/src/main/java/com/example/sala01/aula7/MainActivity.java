@@ -18,57 +18,55 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "LOG_TAG";
 
-    TaskStackBuilder taskStackBuilder;
-    Intent resultIntent;
-    PendingIntent pendingIntent;
-    NotificationCompat.Builder notificationBuilder;
-    NotificationManager notificationManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText editTextModelo = (EditText) findViewById(R.id.edittext_modelo);
-        final EditText editTextPlaca = (EditText) findViewById(R.id.edittext_placa);
-        final Button buttonSalvar = (Button) findViewById(R.id.button_salvar);
+        final EditText editTextModel = (EditText) findViewById(R.id.edittext_model);
+        final EditText editTextLicensePlate = (EditText) findViewById(R.id.edittext_license_plate);
+        final Button buttonSave = (Button) findViewById(R.id.button_save);
 
-        buttonSalvar.setOnClickListener(new View.OnClickListener() {
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String modelo = editTextModelo.getText().toString();
-                String placa = editTextPlaca.getText().toString();
+                String model = editTextModel.getText().toString();
+                String licensePlate = editTextLicensePlate.getText().toString();
 
-                if (modelo.isEmpty() || placa.isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Preencha todos os campos", Toast.LENGTH_SHORT);
-                    toast.show();
+                if (model.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), getText(R.string.edittext_model_alert_message), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Log.d(LOG_TAG, "Criando notification.");
+                if (licensePlate.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), getText(R.string.edittext_license_plate_alert_message), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Log.d(LOG_TAG, "Creating notification.");
 
                 //Creating Notification Builder
-                notificationBuilder = new NotificationCompat.Builder(MainActivity.this);
-                notificationBuilder.setContentTitle("Aula7");
-                notificationBuilder.setContentText("Cadastro realizado com sucesso");
-                notificationBuilder.setTicker(modelo + " - " + placa);
-                notificationBuilder.setSmallIcon(android.R.drawable.alert_dark_frame);
+                NotificationCompat.Builder notificationCompatBuilder = new NotificationCompat.Builder(MainActivity.this);
+                notificationCompatBuilder.setContentTitle("Aula7");
+                notificationCompatBuilder.setContentText("Car successfully registered.");
+                notificationCompatBuilder.setTicker(model + " - " + licensePlate);
+                notificationCompatBuilder.setSmallIcon(android.R.drawable.alert_dark_frame);
 
                 //Creating new Stack Builder
-                taskStackBuilder = TaskStackBuilder.create(MainActivity.this);
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(MainActivity.this);
                 taskStackBuilder.addParentStack(MainActivity.class);
 
                 //Intent which is opened when notification is clicked
-                resultIntent = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
 
-                taskStackBuilder.addNextIntent(resultIntent);
-                pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                notificationBuilder.setContentIntent(pendingIntent);
+                taskStackBuilder.addNextIntent(intent);
+                PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                notificationCompatBuilder.setContentIntent(pendingIntent);
 
-                notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(0, notificationBuilder.build());
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(0, notificationCompatBuilder.build());
 
-                Log.d(LOG_TAG, "Notification criada.");
+                Log.d(LOG_TAG, "Notification created.");
             }
         });
     }

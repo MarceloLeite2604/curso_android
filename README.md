@@ -41,3 +41,9 @@ Este projeto elabora um aplicato que recebe um endereço, uma mensagem e possui 
 
 Elementos estudados:
 * Intent retornando resultados
+
+## Aula 7
+Este projeto elabora um aplicativo que recebe o modelo de um carro e sua placa. Quando o usuário solicita que as informações sejam salvas, uma notificação de sistema é criada. Quando o usuário seleciona a notificação, o aplicativo é aberto novamente.
+
+Elementos estudados:
+* Notification

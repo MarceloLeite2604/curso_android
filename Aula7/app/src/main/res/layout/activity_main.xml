@@ -7,19 +7,19 @@
     tools:context="com.example.sala01.aula7.MainActivity">
 
     <EditText
-        android:id="@+id/edittext_modelo"
+        android:id="@+id/edittext_model"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_edittext_modelo" />
+        android:hint="@string/edittext_model_hint" />
     <EditText
-        android:id="@+id/edittext_placa"
+        android:id="@+id/edittext_license_plate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_edittext_placa" />
+        android:hint="@string/edittext_license_plate_hint" />
 
     <Button
-        android:id="@+id/button_salvar"
+        android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_button_salvar" />
+        android:text="@string/button_save_label" />
 </LinearLayout>
