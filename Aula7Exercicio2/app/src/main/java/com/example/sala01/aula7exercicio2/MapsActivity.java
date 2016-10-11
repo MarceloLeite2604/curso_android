@@ -34,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("LOG_TAG", "LocationChanged");
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Você está aqui"));
+                mMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.marker_title)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             }
 

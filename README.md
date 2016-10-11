@@ -47,3 +47,18 @@ Este projeto elabora um aplicativo que recebe o modelo de um carro e sua placa. 
 
 Elementos estudados:
 * Notification
+
+## Aula 8
+Este projeto elabora um aplicativo que recebe uma texto do usuário apresenta três botões. O primeiro realiza o armazenamento do conteúdo na área de dados interna, o segundo armazena na área de dados externa e o terceiro armazena através do SQLite.
+
+Elementos estudados:
+* Armazenamento interno
+* Armazenamento externo
+* SQLite
+
+## Aula 8, exercício 2
+Este projeto elabora um aplicativo que possui um botão para que o usuário possa tirar fotos com o celular. Abaixo deste botão existe uma lista de imagens já caputaras pelo aplicativo. Esta lista persiste mesmo que o usuário encerre a aplicação.
+
+Elementos estudados:
+* Intents com recursos do sistema
+* Armazenamento interno
